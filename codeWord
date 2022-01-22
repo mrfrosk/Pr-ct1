@@ -1,0 +1,36 @@
+package com.company;
+
+import java.text.DecimalFormat;
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        String word = input.nextLine();
+        int[] code_ = code(word);
+        for(int i:code_){
+            System.out.print(i);
+        }
+        System.out.println();
+        System.out.println(decode(code_));
+    }
+    public static int[] code(String string){
+        char[] newString= string.toCharArray();
+        int[] codedString = new int[newString.length];
+        for(int i = 0; i < codedString.length; i++){
+            codedString[i] = newString[i] - '0';
+        }
+        return codedString;
+    }
+    public static String decode(int[] code){
+        String string = "";
+        for (int i :code
+             ) {
+            string += (char) + (i + '0');
+        }
+        return string;
+    }
+
+}
