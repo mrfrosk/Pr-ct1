@@ -1,36 +1,46 @@
 package com.company;
 
-import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
+    static Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-        String word = input.nextLine();
-        int[] code_ = code(word);
-        for(int i:code_){
+        String[] str = code("Hello");
+        for (String i : str
+        ) {
             System.out.print(i);
         }
-        System.out.println();
-        System.out.println(decode(code_));
+        System.out.println("\n" + decode(str));
+
     }
-    public static int[] code(String string){
-        char[] newString= string.toCharArray();
-        int[] codedString = new int[newString.length];
-        for(int i = 0; i < codedString.length; i++){
-            codedString[i] = newString[i] - '0';
-        }
+
+    public static String[] code(String string) {
+        char[] newString = string.toCharArray();
+        String[] codedString = new String[newString.length];
+
+        for (int i = 0; i < codedString.length; i++) codedString[i] = Integer.toBinaryString(newString[i] - '0');
         return codedString;
     }
-    public static String decode(int[] code){
+
+        public static String decode(String[] code){
         String string = "";
-        for (int i :code
-             ) {
-            string += (char) + (i + '0');
+        for (String i :code
+        ) {
+            string += (char) + (fromBinToInt(i.toCharArray() ) + '0');
         }
         return string;
     }
+    
+    public static int fromBinToInt(char[] arg) {
 
+        int numb = 0;
+        for (int i = 0; i < arg.length; i++) {
+            numb += (arg[i] - '0') * (Math.pow(2, arg.length - 1 - i));
+        }
+        return numb;
+    }
 }
+
+
