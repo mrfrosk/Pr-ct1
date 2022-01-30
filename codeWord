@@ -7,7 +7,8 @@ public class Main {
     static Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) {
-        String[] str = code("Hello");
+        System.out.print("Введите строку ");
+        String[] str = code(input.nextLine());
         for (String i : str
         ) {
             System.out.print(i);
@@ -21,18 +22,24 @@ public class Main {
         String[] codedString = new String[newString.length];
 
         for (int i = 0; i < codedString.length; i++) codedString[i] = Integer.toBinaryString(newString[i] - '0');
+        reverseValueInStringArr(codedString);
         return codedString;
     }
 
         public static String decode(String[] code){
+        reverseValueInStringArr(code);
         String string = "";
         for (String i :code
         ) {
             string += (char) + (fromBinToInt(i.toCharArray() ) + '0');
         }
-        return string;
+        return string.replace('/',' ');
     }
-    
+    public static void reverseValueInStringArr(String[] arr){
+        for(int i = 0; i < arr.length; i++){
+            arr[i] = new StringBuilder(arr[i]).reverse().toString();
+        }
+    }
     public static int fromBinToInt(char[] arg) {
 
         int numb = 0;
